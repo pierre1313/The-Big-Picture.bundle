@@ -20,7 +20,7 @@ def HandlePhotosRequest(pathNouns, count):
         dir.AppendItem(DirectoryItem(Utils.EncodeStringToUrlPath(item.link)+'$'+item.title, item.title, ""))
   elif count == 1:
     (url,title) = pathNouns[0].split('$')
-    dir = MediaContainer("art-default.jpg", "ImageStream", "The Big Picture", title)
+    dir = MediaContainer("art-default.jpg", "ImageStream", "The Big Picture", title.replace('+',' '))
     url = Utils.DecodeUrlPathToString(url)
     i = 1
     for photo in XML.ElementFromURL(url, True).xpath("//div[@class='bpBoth']"):
