@@ -21,8 +21,24 @@
 	<key>PlexFrameworkVersion</key>
 	<string>2</string>
 	<key>PlexPluginConsoleLogging</key>
-	<string>0</string>	
+	<string>1</string>	
+	<key>PlexPluginDevMode</key>
+	<string>0</string>
 	<key>PlexPluginMode</key>
 	<string>AlwaysOn</string>
+	<key>PlexURLServices</key>
+	<dict>
+		<key>The Big Picture</key>
+		<dict>
+			<key>URLPattern</key>
+			<string>.*boston\.com.*</string>
+			<key>LinkedPlugin</key>
+			<string>com.plexapp.plugins.the-big-picture</string>
+			<key>TestURLs</key>
+			<array>
+				<string>http://www.boston.com/bigpicture/2011/06/obama_us_troop_withdrawal_to_b.html</string>
+			</array>
+		</dict>
+	</dict>
 </dict>
 </plist>

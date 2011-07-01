@@ -1,0 +1,49 @@
+####################################################################################################
+
+def MetadataObjectForURL(url):
+  
+  print "fetch metadata"
+
+  details = HTML.ElementFromURL(url)
+
+  desc = details.xpath('//meta[@property="og:description"]')[0].get('content')
+  thumb = details.xpath(".//div[@class='bpImageTop']//img")[0].get('src')
+  title = details.xpath('//meta[@property="og:title"]')[0].get('content')
+  
+  album = PhotoAlbumObject(
+      title = title,
+      summary = desc,
+      thumb = thumb
+    )
+  return album
+
+####################################################################################################
+def MediaObjectsForURL(url):
+
+  return [(MediaObject(
+      parts = [PartObject(key=Callback(GetPhotos, url=url))]
+        )
+      )
+    ]
+
+####################################################################################################
+
+def GetPhotos(url):
+  c = ObjectContainer()
+
+  for photo in HTML.ElementFromURL(url).xpath("//div[@class='bpBoth']"):
+    try:
+      try:
+        title = 'Photo '+ photo.xpath("div[@class='bpCaption']/div[@class='photoNum']/a")[0].text()
+      except:
+        title = ''
+      c.add(PhotoObject(
+      title = title,
+      summary = photo.xpath("div[@class='bpCaption']/text()")[0],
+      thumb = photo.xpath('img')[0].get('src'),
+      url = photo.xpath('img')[0].get('src')))
+
+    except:
+      pass
+      
+  return c
