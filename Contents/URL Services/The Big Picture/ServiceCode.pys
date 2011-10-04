@@ -17,6 +17,15 @@ def MetadataObjectForURL(url):
       thumb = thumb
     )
   return album
+  
+####################################################################################################
+
+def MediaObjectsForURL(url):
+  return [(MediaObject(
+      parts = [PartObject(key=Callback(GetPhotos, url=url))]
+        )
+      )
+    ]
 
 ####################################################################################################
 
